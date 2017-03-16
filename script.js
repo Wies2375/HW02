@@ -1,7 +1,6 @@
-var i
-for (var i=0; i<5; i=i+1){
+for (var i ;i < 5;i = i + 1){
     
-d3.select("#first")
+d3.select("svg")
   .append("line")
   .attr({
     "x1": 0, 
