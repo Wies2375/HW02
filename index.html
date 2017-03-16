@@ -7,17 +7,38 @@
 		<meta name="viewport" content="initial-scale=1.0">
         <script  src="https://d3js.org/d3.v3.js">
         </script>       
-        <script src="/Users/WeiYu/HW02/script.js"></script>
+        
 	</head>
 
 	<body>
 	<!--直接用SVG畫音符-->
 
-    <svg width= "300" height= "200", id ="first">
+    <svg width= "300" height= "400", id ="first">
         <circle cx= "150" cy= "120" r= 15>
         </circle>
-        <rect x= "160" y= "45" width= "5" height= "78" ></rect>
-       
+        
+        <rect x= "160" y= "45" width= "5" height= "78" >
+        </rect>
+        
+        <text x="140" y="200" font-size="30" font-family=“arial”>
+        A
+        </text >
+        
+    <script>
+        for(var i=0; i<5; i=i+1){
+        d3.select("#first")
+          .append("line")
+          .attr({
+          "x1":0,
+          "y1":75+ 30*(i-1),
+          "x2":300,
+          "y2":75+ 30*(i-1),
+          "stroke":"black",
+          "stroke-width":1.5
+          }); 
+  
+}
+    </script>  
     </svg>
 
 	</body>
