@@ -11,22 +11,45 @@
 	</head>
 
 	<body>
-	<!--直接用SVG畫音符-->
 
-    <svg width= "300" height= "400", id ="first">
-        <circle cx= "150" cy= "120" r= 15>
+<p>第一題</p>
+    <svg id ="fir" width= "300" height= "250">
+        <rect x= "0" y= "15" width= "300" height= "200"
+             fill = "white" stroke = "blue">       
+        </rect>
+      
+        <circle cx= "150"
+                cy= "120"
+                r= 15>
         </circle>
         
-        <rect x= "160" y= "45" width= "5" height= "78" >
+        <rect x= "160"
+              y= "45"
+              width= "5" 
+              height= "78" >
         </rect>
         
-        <text x="140" y="200" font-size="30" font-family=“arial”>
+        <text x="140"
+              y="200"
+              font-size="30"
+              font-family=“arial”>
         A
         </text >
+   </svg>
+      
+
+<p>第二題</p>
+    <svg id ="sec" width= "400" height= "300">
+
+<p>第三題</p>
+   <svg id ="thir" width= "400" height= "300">
+      
+   </svg>
+    
+     <script>
         
-    <script>
-        for(var i=0; i<5; i=i+1){
-        d3.select("#first")
+        for(var i=0; i<5; i++){
+        d3.select("#fir")
           .append("line")
           .attr({
           "x1":0,
@@ -36,10 +59,88 @@
           "stroke":"black",
           "stroke-width":1.5
           }); 
-  
-}
-    </script>  
-    </svg>
+        }
+        
+        for(var j=0; j<20; j++){
+          var num = random(20,300);
 
+          d3.select("#sec")
+            .append("rect")
+            .attr({
+             "x":10,
+             "y":15+ 12*(j-1),
+             "width":num,
+             "height":10,
+             "fill":"red"
+             }); 
+
+  
+          d3.select("#sec")
+            .append("text")
+            .attr({
+            "x": num+ 15,
+            "y": 12+ 12*j,
+            "font-size":12
+            })
+            .text(num);                 
+        }
+       
+       function random(n,m){
+          return Math.ceil(Math.random()*(m-n)+n);
+        }    
+       
+
+  var last_num = 0;
+
+      for(var i=0; i<20; i=i+1){
+      var num = random(20,300);
+      d3.select("#thir")
+        .append("line")
+        .attr({
+        "x1":10+ last_num,
+        "y1":10+ 12*(i-1)+5,
+        "x2":10+ num,
+        "y2":10+ 12*i+ 5,
+        "stroke":"gray"
+        }); 
+  
+      d3.select("#thir")
+        .append("circle")
+        .attr({
+        "cx": 10+num,
+        "cy": 10 +12*i+ 5,
+        "r": 3,
+        "fill":  "red"
+         });  
+  
+      d3.select("#thir")
+        .append("text")
+        .attr({
+        x: num+ 15,
+        y: 10+ 12*i+10,
+        "font-size":12
+        })
+        .text(num);                 
+              
+      last_num = num;
+   
+      }
+
+      d3.select("#thir")
+        .append("line")
+        .attr({
+        "x1":10+ last_num,
+        "y1":10+ 12*(i-1)+5,
+        "x2":10+0,
+        "y2":10+ 12*i+ 5,
+        "stroke":"gray"
+        }); 
+
+       
+    function random(n,m){
+      return Math.ceil(Math.random()*(m-n)+n);
+    }    
+       
+    </script> 
 	</body>
 </html>
