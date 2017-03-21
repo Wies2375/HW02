@@ -46,10 +46,11 @@
    <svg id ="thir" width= "400" height= "300"></svg>
        
 <p>第四題</p>
-   <svg id ="four" width= "400" height= "300"></svg>
+   <svg id ="four" width= "500" height= "300"></svg>
     
      <script>
-//第二題    
+         
+//第一題    
         for(var i=0; i<5; i++){
         d3.select("#fir")
           .append("line")
@@ -62,7 +63,8 @@
           "stroke-width":1.5
           }); 
         }
-       
+         
+//第二題      
         for(var j=0; j<20; j++){
           var num = random(20,300);
 
@@ -143,22 +145,23 @@
       return Math.ceil(Math.random()*(m-n)+n);
     }    
 
-   
- //第四題      
-         
+</script> 
+<!--第四題      -->
+
+ <script>       
        d3.json("invoice-taipei.json", function(dataSet){
-           var svg = d3.select("svg");
+        var svg = d3.select("#four");
            var count = 0;
-           for(var y=0; y<dataSet.length; y++){
-                if( dataSet[y].date === "2016/8/1" 
-                   && dataSet[y].cid === "A" 
-                   && +dataSet[y].amount > 10000000){
+           for(var i=0; i<dataSet.length; i++){
+                if( dataSet[i].date === "2016/8/1" 
+                   && dataSet[i].cid === "A" 
+                   && +dataSet[i].amount > 10000000){
                       d3.select("svg")
                         .append("rect")
                         .attr({
                         x: 100,
                         y: 10+12*count,
-                        width: dataSet[y].amount/100000000,
+                        width: dataSet[i].amount/100000000,
                         height: 10,
                         fill: "red"
                       });
@@ -168,12 +171,58 @@
                         x: 0,
                         y: 16+12*count,
                         "font-size": 5
-                      }).text(dataSet[y].industry);
+                      }).text(dataSet[i].industry);
                       count++;
                  }
                 
             }
        });
+    </script> 
+ 
+<p>第五題</p>
+    <script> 
+//第五題
+       var arr = [85, 60, 99, 49, 77, 82]; 
+       bind();
+       render();
+       
+       function bind(){
+       ///狀態1
+       var selection = d3.select("body") 
+                         .selectAll("div") 
+                         .data(arr);
+       
+           
+       
+       ///狀態2
+       selection.enter()
+                .append("div");
+
+        
+           
+        ///狀態3
+        selection.exit()
+                 .remove();
+           
+       }
+           
+        function render(){
+            d3.selectAll("div")
+              .style({
+                    "color":function(d){
+                        if(d<70){
+                            return "red";
+                        }
+                        else{
+                            return "black";
+                        }
+                    }
+            })
+              .text(function(d,i){
+                    return (i+1)+":"+d;
+              });
+            
+        }
           
     </script> 
 	</body>
