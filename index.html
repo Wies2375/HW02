@@ -156,7 +156,7 @@
                 if( dataSet[i].date === "2016/8/1" 
                    && dataSet[i].cid === "A" 
                    && +dataSet[i].amount > 10000000){
-                      d3.select("svg")
+                      d3.select("#four")
                         .append("rect")
                         .attr({
                         x: 100,
@@ -165,7 +165,7 @@
                         height: 10,
                         fill: "red"
                       });
-                      d3.select("svg")
+                      d3.select("#four")
                         .append("text")
                         .attr({
                         x: 0,
