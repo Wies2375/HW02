@@ -11,6 +11,7 @@
 	</head>
 
 	<body>
+	
 
 <p>第一題</p>
     <svg id ="fir" width= "300" height= "250">
@@ -42,12 +43,13 @@
     <svg id ="sec" width= "400" height= "300">
 
 <p>第三題</p>
-   <svg id ="thir" width= "400" height= "300">
-      
-   </svg>
+   <svg id ="thir" width= "400" height= "300"></svg>
+       
+<p>第四題</p>
+   <svg id ="four" width= "400" height= "300"></svg>
     
      <script>
-        
+//第二題    
         for(var i=0; i<5; i++){
         d3.select("#fir")
           .append("line")
@@ -60,7 +62,7 @@
           "stroke-width":1.5
           }); 
         }
-        
+       
         for(var j=0; j<20; j++){
           var num = random(20,300);
 
@@ -89,7 +91,7 @@
           return Math.ceil(Math.random()*(m-n)+n);
         }    
        
-
+//第三題 
   var last_num = 0;
 
       for(var i=0; i<20; i=i+1){
@@ -140,7 +142,39 @@
     function random(n,m){
       return Math.ceil(Math.random()*(m-n)+n);
     }    
-       
+
+   
+ //第四題      
+         
+       d3.json("invoice-taipei.json", function(dataSet){
+           var svg = d3.select("svg");
+           var count = 0;
+           for(var y=0; y<dataSet.length; y++){
+                if( dataSet[y].date === "2016/8/1" 
+                   && dataSet[y].cid === "A" 
+                   && +dataSet[y].amount > 10000000){
+                      d3.select("svg")
+                        .append("rect")
+                        .attr({
+                        x: 100,
+                        y: 10+12*count,
+                        width: dataSet[y].amount/100000000,
+                        height: 10,
+                        fill: "red"
+                      });
+                      d3.select("svg")
+                        .append("text")
+                        .attr({
+                        x: 0,
+                        y: 16+12*count,
+                        "font-size": 5
+                      }).text(dataSet[y].industry);
+                      count++;
+                 }
+                
+            }
+       });
+          
     </script> 
 	</body>
 </html>
